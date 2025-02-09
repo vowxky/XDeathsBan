@@ -78,42 +78,42 @@ public class XDeathsBanCommand {
     }
 
     private static int displayStatus(ServerCommandSource source) {
-        source.sendFeedback(() -> Text.literal("§6=============================="), false);
-        source.sendFeedback(() -> Text.literal("§e      ✦ XDeathsBan Settings ✦"), false);
-        source.sendFeedback(() -> Text.literal("§6=============================="), false);
-        source.sendFeedback(() -> Text.literal("§a✔ Max Deaths: §f" + JsonHandler.getMaxDeaths()), false);
-        source.sendFeedback(() -> Text.literal("§a✔ Temporary Ban: " + (JsonHandler.isBanTemporary() ? "§2Enabled" : "§4Disabled")), false);
-        source.sendFeedback(() -> Text.literal("§a✔ Ban Duration: §f" + JsonHandler.getBanTimeTicks() + " ticks"), false);
-        source.sendFeedback(() -> Text.literal("§a✔ Only PvP Deaths: " + (JsonHandler.getOnlyPvPDeaths() ? "§2Enabled" : "§4Disabled")), false);
-        source.sendFeedback(() -> Text.literal("§6=============================="), false);
+        source.sendFeedback(Text.literal("§6=============================="), false);
+        source.sendFeedback(Text.literal("§e      ✦ XDeathsBan Settings ✦"), false);
+        source.sendFeedback(Text.literal("§6=============================="), false);
+        source.sendFeedback(Text.literal("§a✔ Max Deaths: §f" + JsonHandler.getMaxDeaths()), false);
+        source.sendFeedback(Text.literal("§a✔ Temporary Ban: " + (JsonHandler.isBanTemporary() ? "§2Enabled" : "§4Disabled")), false);
+        source.sendFeedback(Text.literal("§a✔ Ban Duration: §f" + JsonHandler.getBanTimeTicks() + " ticks"), false);
+        source.sendFeedback(Text.literal("§a✔ Only PvP Deaths: " + (JsonHandler.getOnlyPvPDeaths() ? "§2Enabled" : "§4Disabled")), false);
+        source.sendFeedback(Text.literal("§6=============================="), false);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int setMaxDeaths(CommandContext<ServerCommandSource> context) {
         int value = IntegerArgumentType.getInteger(context, "value");
         JsonHandler.setMaxDeaths(value);
-        context.getSource().sendFeedback(() -> Text.literal("§a✔ Max deaths set to: §f" + value), true);
+        context.getSource().sendFeedback(Text.literal("§a✔ Max deaths set to: §f" + value), true);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int setBanTemporary(CommandContext<ServerCommandSource> context) {
         boolean enabled = BoolArgumentType.getBool(context, "enabled");
         JsonHandler.setBanTemporary(enabled);
-        context.getSource().sendFeedback(() -> Text.literal("§a✔ Temporary bans " + (enabled ? "§2enabled" : "§4disabled")), true);
+        context.getSource().sendFeedback(Text.literal("§a✔ Temporary bans " + (enabled ? "§2enabled" : "§4disabled")), true);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int setBanTimeTicks(CommandContext<ServerCommandSource> context) {
         int ticks = IntegerArgumentType.getInteger(context, "ticks");
         JsonHandler.setBanTimeTicks(ticks);
-        context.getSource().sendFeedback(() -> Text.literal("§a✔ Ban duration set to: §f" + ticks + " ticks"), true);
+        context.getSource().sendFeedback(Text.literal("§a✔ Ban duration set to: §f" + ticks + " ticks"), true);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int setOnlyPvPDeaths(CommandContext<ServerCommandSource> context) {
         boolean enabled = BoolArgumentType.getBool(context, "enabled");
         JsonHandler.setOnlyPvPDeaths(enabled);
-        context.getSource().sendFeedback(() -> Text.literal("§a✔ Only PvP Deaths " + (enabled ? "§2enabled" : "§4disabled")), true);
+        context.getSource().sendFeedback(Text.literal("§a✔ Only PvP Deaths " + (enabled ? "§2enabled" : "§4disabled")), true);
         return Command.SINGLE_SUCCESS;
     }
 
@@ -129,7 +129,7 @@ public class XDeathsBanCommand {
             }
 
             JsonHandler.unbanPlayer(playerUUID);
-            source.sendFeedback(() -> Text.literal("§a✔ Player §f" + playerName + " §ahas been unbanned."), true);
+            source.sendFeedback(Text.literal("§a✔ Player §f" + playerName + " §ahas been unbanned."), true);
             return Command.SINGLE_SUCCESS;
 
         } catch (Exception e) {
@@ -141,7 +141,7 @@ public class XDeathsBanCommand {
 
     private static int unbanAllPlayers(ServerCommandSource source) {
         int unbannedCount = JsonHandler.unbanAllPlayers();
-        source.sendFeedback(() -> Text.literal("§a✔ Successfully unbanned §f" + unbannedCount + " §aplayers."), true);
+        source.sendFeedback(Text.literal("§a✔ Successfully unbanned §f" + unbannedCount + " §aplayers."), true);
         return Command.SINGLE_SUCCESS;
     }
 
@@ -149,16 +149,16 @@ public class XDeathsBanCommand {
         List<String> bannedPlayers = JsonHandler.getAllBannedPlayerNames();
 
         if (bannedPlayers.isEmpty()) {
-            source.sendFeedback(() -> Text.literal("§a✔ No players are currently banned."), false);
+            source.sendFeedback(Text.literal("§a✔ No players are currently banned."), false);
         } else {
-            source.sendFeedback(() -> Text.literal("§c✖ Currently Banned Players: §f" + String.join(", ", bannedPlayers)), false);
+            source.sendFeedback(Text.literal("§c✖ Currently Banned Players: §f" + String.join(", ", bannedPlayers)), false);
         }
         return Command.SINGLE_SUCCESS;
     }
 
     private static int reloadConfig(ServerCommandSource source) {
         JsonHandler.reloadConfig();
-        source.sendFeedback(() -> Text.literal("§a✔ Successfully reload config"), true);
+        source.sendFeedback(Text.literal("§a✔ Successfully reload config"), true);
         return Command.SINGLE_SUCCESS;
     }
 }
