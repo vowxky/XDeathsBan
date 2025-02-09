@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "xdeathsban",
+  "version": "${version}",
+  "name": "X Deaths Ban",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/xdeathsban/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "vowxky.xdeathsban.Xdeathsban"
+    ]
+  },
+  "mixins": [
+    "xdeathsban.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
