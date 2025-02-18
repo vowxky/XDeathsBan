@@ -192,7 +192,7 @@ public class JsonHandler {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(BANS_FOLDER)) {
             return StreamSupport.stream(stream.spliterator(), false)
                     .map(JsonHandler::loadJson)
-                    .filter(json -> json.has("banned") && json.get("banned").getAsBoolean()) // Solo jugadores baneados
+                    .filter(json -> json.has("banned") && json.get("banned").getAsBoolean()) 
                     .map(json -> json.has("playerName") ? json.get("playerName").getAsString() : null)
                     .filter(Objects::nonNull)
                     .toList();
@@ -209,7 +209,7 @@ public class JsonHandler {
                         JsonObject playerData = loadJson(file);
                         return playerData.has("playerName") && playerData.get("playerName").getAsString().equalsIgnoreCase(playerName);
                     })
-                    .map(file -> file.getFileName().toString().replace(".json", "")) // Extrae UUID desde el nombre del archivo
+                    .map(file -> file.getFileName().toString().replace(".json", "")) 
                     .findFirst()
                     .orElse(null);
         } catch (IOException e) {
